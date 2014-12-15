@@ -8,7 +8,7 @@ RUN \
 	add-apt-repository -y ppa:ondrej/php5 && \
 	apt-get update && \
 	apt-get upgrade -y && \
-	apt-get install -y php5-fpm php5-curl php5-gd php5-mysql php5-memcache mysql-client-5.5 nginx dialog supervisor && \
+	apt-get install -y php5-fpm php5-curl php5-gd php5-mysql php5-memcache mysql-client-5.5 memcached nginx dialog supervisor && \
 	rm -rf /var/lib/apt/lists/* 
 
 RUN \
