@@ -16,6 +16,10 @@ RUN \
 	sed -i -e "s/upload_max_filesize\s*=\s*2M/upload_max_filesize = 100M/g" /etc/php5/fpm/php.ini && \
 	sed -i -e "s/post_max_size\s*=\s*8M/post_max_size = 100M/g" /etc/php5/fpm/php.ini && \
 	sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php5/fpm/php-fpm.conf 
+	sed -i -e "s/expose_php\s*=\s*On/expose_php = Off/g" /etc/php5/cli/php-fpm.conf 
+
+	sed -i -e "s/short_open_tag\s*=\s*Off/short_open_tag = On/g" /etc/php5/fpm/php-fpm.conf 
+	sed -i -e "s/short_open_tag\s*=\s*Off/short_open_tag = On/g" /etc/php5/cli/php-fpm.conf 
 
 RUN \
 	echo "fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;" >> /etc/nginx/fastcgi_params && \
