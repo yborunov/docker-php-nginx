@@ -1,3 +1,5 @@
+# PHP container v0.22
+
 FROM wannabe/ubuntu
 
 MAINTAINER Yury Borunov <yury@borunov.com>
@@ -8,7 +10,7 @@ RUN \
 	add-apt-repository -y ppa:ondrej/php5 && \
 	apt-get update && \
 	apt-get upgrade -y && \
-	apt-get install -y php5-fpm php5-curl php5-gd php5-mysql php5-memcache mysql-client-5.5 memcached nginx dialog supervisor && \
+	apt-get install -y php5-dev php5-mcrypt php5-fpm php5-curl php5-gd php5-mysql php5-memcache mysql-client-5.5 memcached nginx dialog supervisor && \
 	rm -rf /var/lib/apt/lists/* 
 
 RUN \
@@ -28,6 +30,9 @@ RUN \
 	echo "fastcgi_param HOSTNAME \$host;" >> /etc/nginx/fastcgi_params
 
 ADD supervisord.conf /etc/supervisor/conf.d/
+ADD supervisord_nginx.conf /etc/supervisor/conf.d/
+ADD supervisord_php5fpm.conf /etc/supervisor/conf.d/
+
 ADD nginx.conf /etc/nginx/nginx.conf
 
 RUN mkdir /app
